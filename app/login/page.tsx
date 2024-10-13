@@ -6,6 +6,7 @@ import { headers } from 'next/headers';
 export default function LoginForm() {
   const signIn = async () => {
     'use server';
+    console.log('Starting signIn process'); // Debugging line
 
     // 1. Create a Supabase client
     const supabase = createClient();
@@ -19,8 +20,10 @@ export default function LoginForm() {
     });
 
     if (error) {
-      console.log(error);
+      console.log('Error during signIn:', error); // Debugging line
     } else {
+      console.log('Redirecting to:', data.url); // Debugging line
+
       return redirect(data.url);
     }
     // 3. Redirect to landing page
